@@ -25,7 +25,7 @@ export default function Hero() {
           transition={{ duration: 0.5 }}
           className="text-sm tracking-widest text-cyan-300/90"
         >
-          SOFTWARE BASED PROJECTS
+          
         </motion.p>
 
         {/* Headline — typed */}
