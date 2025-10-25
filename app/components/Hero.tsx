@@ -48,7 +48,7 @@ export default function Hero() {
         className="text-lg md:text-2xl font-semibold text-cyan-300/90 text-center"
       >
         B.S. in Computer Engineering & Computer Science at{" "}
-        <span className="text-cyan-400 font-bold">Northeastern University</span>
+        <span className="text-cyan-400 font-bold">Northeastern University 27'</span>
       </motion.p>
 
       {/* Typing effect title */}

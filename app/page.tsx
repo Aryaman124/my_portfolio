@@ -4,9 +4,10 @@ import Loader from "./components/Loader";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import Skills_Page from "./components/Skills_Page"; 
 import Section from "./components/Section";
 import ProjectsGrid from "./components/ProjectsGrid";
-import Contact from "./components/Contact"; // ✅ new import
+import Contact from "./components/Contact";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -20,6 +21,9 @@ export default function Home() {
 
       {/* About Section */}
       <About />
+
+      {/* Skills / Experience Section */}
+      <Skills_Page />  {/* ✅ your new section */}
 
       {/* Projects Section */}
       <Section id="projects" title="Projects">
