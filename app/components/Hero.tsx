@@ -50,7 +50,7 @@ export default function Hero() {
       >
         B.S. in Computer Science (AI Concentration) with a Math Minor at{" "}
         <span className="text-cyan-400 font-bold">
-          Northeastern University ’27
+          Khoury College of Computer Sciences, Northeastern University ’28
         </span>
       </motion.p>
 
