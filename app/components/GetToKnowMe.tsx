@@ -107,33 +107,28 @@ export default function GetToKnowMe() {
           </ol>
         </Reveal>
 
-        {/* Based in — map card */}
+        {/* Based in — real OpenStreetMap of Boston, darkened to match the theme */}
         <Reveal delay={0.05} className={`${card} relative overflow-hidden`}>
-          {/* faux street map */}
-          <svg
+          <iframe
+            title="Map of Boston, MA"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-71.1190%2C42.3300%2C-70.9990%2C42.3900&layer=mapnik"
+            className="pointer-events-none absolute inset-0 h-full w-full border-0"
+            style={{ filter: "invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9) saturate(0.85)" }}
+            loading="lazy"
+          />
+          {/* readability scrim behind the label */}
+          <div
             aria-hidden
-            className="absolute inset-0 h-full w-full opacity-[0.18]"
-            preserveAspectRatio="xMidYMid slice"
-            viewBox="0 0 400 220"
-          >
-            <g stroke="#9ca3af" strokeWidth="1" fill="none">
-              <path d="M-20 60 L420 30" />
-              <path d="M-20 120 L420 95" />
-              <path d="M-20 180 L420 165" />
-              <path d="M60 -20 L110 240" />
-              <path d="M180 -20 L210 240" />
-              <path d="M300 -20 L320 240" />
-              <path d="M-20 30 L420 200" />
-            </g>
-          </svg>
+            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#0b1320]/90 via-[#0b1320]/20 to-transparent"
+          />
           <div className="relative">
             <p className={eyebrow}>Based in</p>
             <p className="mt-2 text-2xl md:text-3xl font-semibold text-white">Boston, MA</p>
           </div>
-          {/* pulsing pin */}
-          <span className="absolute right-10 top-1/2 flex h-3.5 w-3.5">
+          {/* pulsing pin centered on the map */}
+          <span className="absolute left-1/2 top-1/2 flex h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-70" />
-            <span className="relative inline-flex h-3.5 w-3.5 rounded-full bg-cyan-400 ring-2 ring-white/40" />
+            <span className="relative inline-flex h-3.5 w-3.5 rounded-full bg-cyan-400 ring-2 ring-white/60" />
           </span>
         </Reveal>
 
