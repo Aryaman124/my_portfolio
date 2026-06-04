@@ -30,8 +30,6 @@ export default function SplineRobot({ className = "" }: { className?: string }) 
   return (
     <Suspense fallback={null}>
       <Spline scene={SCENE_URL} className={className} />
-      {/* Cover the small Spline logo badge in the corner with the page color */}
-      <div className="pointer-events-none absolute bottom-3 right-3 h-12 w-32 bg-[#0a0e14]" />
     </Suspense>
   );
 }

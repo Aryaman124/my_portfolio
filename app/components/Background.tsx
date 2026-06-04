@@ -2,12 +2,33 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Ambient page background: a faint dot-grid, a section-anchored set of soft
- * glows, a whisper of film grain, and a cursor-following spotlight.
- * All layers sit at z-index -1 (behind content) and are pointer-events-none,
- * so they never interfere with the UI. Pure CSS except the spotlight, which
- * uses one rAF-throttled mousemove listener and is skipped for reduced-motion.
+ * Ambient page background themed to the site owner's work — AI, quantitative
+ * finance, and math. Layers (all z-index -1, pointer-events-none):
+ *   1. brighter navy base gradient
+ *   2. graph-paper grid (math / charting)
+ *   3. section-anchored ambient glows (scroll with the page)
+ *   4. a slowly-glowing rising "market" line chart (quant / trading)
+ *   5. faint floating math + finance glyphs
+ *   6. a cursor-following spotlight
+ * Only the spotlight uses JS (one rAF-throttled listener, skipped for
+ * reduced-motion); everything else is CSS.
  */
+
+// Rising, slightly volatile path — reads as an upward market trend.
+const CHART_LINE =
+  "M0,250 L80,225 L160,255 L240,205 L320,220 L400,165 L480,190 L560,140 " +
+  "L640,160 L720,110 L800,135 L880,85 L960,105 L1040,60 L1120,80 L1200,35";
+
+const GLYPHS = [
+  { c: "Σ", top: "14%", left: "8%", size: "5rem" },
+  { c: "∇", top: "30%", left: "82%", size: "4rem" },
+  { c: "μ", top: "58%", left: "12%", size: "4.5rem" },
+  { c: "σ²", top: "70%", left: "78%", size: "4rem" },
+  { c: "∫", top: "44%", left: "46%", size: "5.5rem" },
+  { c: "π", top: "86%", left: "30%", size: "4rem" },
+  { c: "λ", top: "22%", left: "60%", size: "3.5rem" },
+];
+
 export default function Background() {
   const spotlightRef = useRef<HTMLDivElement>(null);
 
@@ -33,45 +54,95 @@ export default function Background() {
 
   return (
     <>
-      {/* 1. Dot grid (fixed to viewport, softly vignetted at the edges) */}
+      {/* 1. Brighter base gradient */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0"
+        style={{
+          zIndex: -1,
+          background:
+            "linear-gradient(180deg, #101b2e 0%, #0d1626 45%, #0b1320 100%)",
+        }}
+      />
+
+      {/* 2. Graph-paper grid, vignetted at the edges */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0"
         style={{
           zIndex: -1,
           backgroundImage:
-            "radial-gradient(rgba(34,211,238,0.10) 1px, transparent 1px)",
-          backgroundSize: "26px 26px",
+            "linear-gradient(rgba(56,189,248,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.07) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
           maskImage:
-            "radial-gradient(ellipse at center, black 35%, transparent 85%)",
+            "radial-gradient(ellipse at center, black 40%, transparent 92%)",
           WebkitMaskImage:
-            "radial-gradient(ellipse at center, black 35%, transparent 85%)",
+            "radial-gradient(ellipse at center, black 40%, transparent 92%)",
         }}
       />
 
-      {/* 2. Section-anchored ambient glows (absolute → scroll with the page) */}
+      {/* 3. Section-anchored ambient glows (scroll with the page) */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 overflow-hidden"
         style={{ zIndex: -1 }}
       >
-        <div className="absolute top-[18%] -left-40 h-[42vw] w-[42vw] rounded-full bg-cyan-500/10 blur-3xl" />
-        <div className="absolute top-[48%] -right-48 h-[46vw] w-[46vw] rounded-full bg-indigo-500/10 blur-3xl" />
-        <div className="absolute top-[80%] left-1/4 h-[40vw] w-[40vw] rounded-full bg-cyan-500/[0.07] blur-3xl" />
+        <div className="absolute top-[16%] -left-40 h-[44vw] w-[44vw] rounded-full bg-cyan-500/15 blur-3xl" />
+        <div className="absolute top-[48%] -right-48 h-[48vw] w-[48vw] rounded-full bg-indigo-500/15 blur-3xl" />
+        <div className="absolute top-[80%] left-1/4 h-[42vw] w-[42vw] rounded-full bg-cyan-500/10 blur-3xl" />
       </div>
 
-      {/* 3. Film grain (fixed, very subtle, soft-light blended) */}
+      {/* 4. Rising market line chart */}
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 opacity-[0.035] mix-blend-soft-light"
-        style={{
-          zIndex: -1,
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-        }}
-      />
+        className="pointer-events-none fixed inset-x-0 bottom-0 h-[55vh] bg-glowpulse"
+        style={{ zIndex: -1 }}
+      >
+        <svg
+          className="h-full w-full"
+          viewBox="0 0 1200 300"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="rgba(34,211,238,0.18)" />
+              <stop offset="100%" stopColor="rgba(34,211,238,0)" />
+            </linearGradient>
+          </defs>
+          <path d={`${CHART_LINE} L1200,300 L0,300 Z`} fill="url(#chartFill)" />
+          <path
+            d={CHART_LINE}
+            fill="none"
+            stroke="rgba(34,211,238,0.5)"
+            strokeWidth="2"
+            style={{ filter: "drop-shadow(0 0 8px rgba(34,211,238,0.5))" }}
+          />
+        </svg>
+      </div>
 
-      {/* 4. Cursor spotlight (fixed, follows the mouse) */}
+      {/* 5. Faint floating math / finance glyphs */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 overflow-hidden font-mono select-none"
+        style={{ zIndex: -1 }}
+      >
+        {GLYPHS.map((g, i) => (
+          <span
+            key={i}
+            className="absolute bg-floaty text-cyan-300/[0.06]"
+            style={{
+              top: g.top,
+              left: g.left,
+              fontSize: g.size,
+              animationDelay: `${i * 0.7}s`,
+            }}
+          >
+            {g.c}
+          </span>
+        ))}
+      </div>
+
+      {/* 6. Cursor spotlight */}
       <div
         ref={spotlightRef}
         aria-hidden
@@ -79,7 +150,7 @@ export default function Background() {
         style={{
           zIndex: -1,
           background:
-            "radial-gradient(550px circle at var(--mx, 50%) var(--my, 30%), rgba(34,211,238,0.08), transparent 65%)",
+            "radial-gradient(560px circle at var(--mx, 50%) var(--my, 30%), rgba(34,211,238,0.10), transparent 65%)",
         }}
       />
     </>
