@@ -23,20 +23,24 @@ export default function Hero() {
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Reactive 3D robot — sits behind the text and follows the cursor */}
-      <div className="absolute inset-0 -z-10">
+      {/* Reactive 3D robot — sits behind the text and follows the cursor.
+          z-0 (not negative) so the canvas is a real hit-target and actually
+          receives pointer events; the section can't swallow them.
+          Shifted up so the robot's head clears the heading text. */}
+      <div className="absolute inset-0 z-0 -translate-y-[16%]">
         <SplineRobot className="!h-full !w-full" />
       </div>
 
-      {/* Scrim so the text stays readable over the robot */}
+      {/* Scrim so the text stays readable over the robot. pointer-events-none
+          so the cursor passes straight through to the robot beneath. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-[#0a0e14]/70 via-[#0a0e14]/30 to-[#0a0e14]/90"
+        className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-[#0a0e14]/70 via-[#0a0e14]/30 to-[#0a0e14]/90"
       />
 
       {/* Content — pointer-events-none lets the cursor reach the robot through
           the text; interactive elements re-enable pointer events individually */}
-      <div className="pointer-events-none relative z-10 flex flex-col items-center">
+      <div className="pointer-events-none relative z-10 flex flex-col items-center translate-y-[14vh]">
         {/* Name — largest, the focal point */}
         <motion.h1
           variants={fadeUp}
