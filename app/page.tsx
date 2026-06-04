@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Loader from "./components/Loader";
+import Background from "./components/Background";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -15,7 +16,8 @@ export default function Home() {
   if (loading) return <Loader onFinish={() => setLoading(false)} />;
 
   return (
-    <main className="bg-[#0a0e14] min-h-screen fade-in">
+    <main className="relative min-h-screen fade-in">
+      <Background />
       <Navbar />
       <Hero />
 
