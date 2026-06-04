@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import SplineRobot from "./SplineRobot";
+import RotatingGreeting from "./RotatingGreeting";
 
 // Single shared fade-up so the whole hero rises in one calm, staggered motion.
 const fadeUp = {
@@ -41,15 +42,15 @@ export default function Hero() {
       {/* Content — pointer-events-none lets the cursor reach the robot through
           the text; interactive elements re-enable pointer events individually */}
       <div className="pointer-events-none relative z-10 flex flex-col items-center translate-y-[14vh]">
-        {/* Name — largest, the focal point */}
+        {/* Rotating multilingual greeting — the focal point */}
         <motion.h1
           variants={fadeUp}
           custom={1}
           initial="hidden"
           animate="show"
-          className="text-5xl md:text-7xl font-extrabold tracking-tight text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.6)]"
+          className="flex min-h-[1.3em] items-center justify-center text-center text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.6)]"
         >
-          Aryaman Sarcar
+          <RotatingGreeting />
         </motion.h1>
 
         {/* Tagline — one tight credential line */}
