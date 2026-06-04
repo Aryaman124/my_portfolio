@@ -15,7 +15,7 @@ export default function Home() {
   if (loading) return <Loader onFinish={() => setLoading(false)} />;
 
   return (
-    <main className="bg-gray-950 min-h-screen fade-in">
+    <main className="bg-[#0a0e14] min-h-screen fade-in">
       <Navbar />
       <Hero />
 
