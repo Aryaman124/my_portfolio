@@ -27,15 +27,15 @@ export default function RotatingGreeting({ className = "" }: { className?: strin
   }, []);
 
   return (
-    <span className={`inline-block ${className}`}>
+    <span className={`relative inline-flex justify-center overflow-hidden ${className}`}>
       <AnimatePresence mode="wait">
         <motion.span
           key={i}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -16 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="inline-block"
+          initial={{ opacity: 0, x: -70 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 70 }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block whitespace-nowrap"
         >
           {GREETINGS[i]}
         </motion.span>
