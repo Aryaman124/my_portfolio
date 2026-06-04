@@ -5,7 +5,8 @@ import Background from "./components/Background";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import Skills_Page from "./components/Skills_Page"; 
+import GetToKnowMe from "./components/GetToKnowMe";
+import Skills_Page from "./components/Skills_Page";
 import Section from "./components/Section";
 import ProjectsGrid from "./components/ProjectsGrid";
 import Contact from "./components/Contact";
@@ -23,6 +24,9 @@ export default function Home() {
 
       {/* About Section */}
       <About />
+
+      {/* Get to Know Me — bento grid */}
+      <GetToKnowMe />
 
       {/* Skills / Experience Section */}
       <Skills_Page />  {/* ✅ your new section */}
