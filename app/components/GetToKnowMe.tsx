@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import RotatingText from "./RotatingText";
+import TechMarquee from "./TechMarquee";
 
 type Job = {
   role: string;
@@ -42,13 +44,13 @@ function LogoAvatar({ src, name, initials, dark, current }: { src: string; name:
   );
 }
 
-const TECH = ["Python", "PyTorch", "LangChain", "FastAPI", "React", "AWS", "PostgreSQL"];
-
-const HOBBIES = [
-  { icon: "⚽", label: "Soccer" },
-  { icon: "🥋", label: "Jiu-Jitsu" },
-  { icon: "🏋️", label: "Lifting" },
-  { icon: "🍳", label: "Cooking" },
+const LIKES = [
+  "Tennis",
+  "Football",
+  "Rugby",
+  "Research",
+  "Understanding markets",
+  "Creating systems",
 ];
 
 const card =
@@ -141,33 +143,19 @@ export default function GetToKnowMe() {
           </p>
         </Reveal>
 
-        {/* I also like */}
-        <Reveal delay={0.15} className={card}>
+        {/* I also like — one at a time, rolling up */}
+        <Reveal delay={0.15} className={`${card} flex flex-col justify-center`}>
           <p className={eyebrow}>I also like…</p>
-          <div className="mt-5 flex flex-wrap gap-3">
-            {HOBBIES.map((h) => (
-              <span
-                key={h.label}
-                className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-2.5 text-lg font-medium text-white"
-              >
-                <span className="text-2xl">{h.icon}</span>
-                {h.label}
-              </span>
-            ))}
-          </div>
+          <RotatingText
+            items={LIKES}
+            className="mt-3 text-2xl md:text-[1.7rem] font-semibold text-white"
+          />
         </Reveal>
 
-        {/* Tech stack */}
-        <Reveal delay={0.2} className={card}>
-          <div className="flex gap-2 overflow-x-auto pb-1">
-            {TECH.map((t) => (
-              <span
-                key={t}
-                className="shrink-0 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-semibold tracking-wide text-cyan-200/90"
-              >
-                {t}
-              </span>
-            ))}
+        {/* Tech stack — continuously scrolling logo marquee */}
+        <Reveal delay={0.2} className={`${card} flex flex-col justify-center`}>
+          <div className="-mx-6 md:-mx-7">
+            <TechMarquee />
           </div>
           <p className="mt-5 text-xl md:text-2xl leading-snug text-white">
             Focused on making <span className="text-cyan-300">fast, reliable</span> software
