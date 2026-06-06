@@ -45,12 +45,12 @@ function LogoAvatar({ src, name, initials, dark, current }: { src: string; name:
 }
 
 const LIKES = [
-  "Tennis",
-  "Football",
-  "Rugby",
-  "Research",
-  "Understanding markets",
-  "Creating systems",
+  "🎾 Tennis",
+  "🏈 Football",
+  "🏉 Rugby",
+  "🔬 Research",
+  "📈 Understanding markets",
+  "⚙️ Creating systems",
 ];
 
 const card =
