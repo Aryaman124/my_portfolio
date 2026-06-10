@@ -18,7 +18,7 @@ type Job = {
 const EXPERIENCE: Job[] = [
   { role: "Forward Deployed Engineer Co-op", company: "IBM", date: "Incoming Sept 2026", logo: "/logos/ibm.png", initials: "IBM", current: true },
   { role: "AI Summer Analyst", company: "Yellow Wood Partners", date: "June 2026 – Aug 2026", logo: "/logos/yellow-wood.png", initials: "YW" },
-  { role: "AI Engineering Co-op", company: "Navikenz", date: "Sept 2025 – Present", logo: "/logos/navikenz.png", initials: "NK", dark: true },
+  { role: "AI Engineering Co-op", company: "Navikenz", date: "Sept 2025 – March 2026", logo: "/logos/navikenz.png", initials: "NK", dark: true },
   { role: "Software Team Member", company: "NEU Electric Racing", date: "Sept 2024 – Dec 2024", logo: "/logos/neu-racing.png", initials: "NE" },
 ];
 
