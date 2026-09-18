@@ -1,13 +1,26 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function Loader({ onFinish }: { onFinish: () => void }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [percent, setPercent] = useState(0);
   const [done, setDone] = useState(false);
+  const finishedRef = useRef(false);
+
+  const finish = useCallback(() => {
+    if (finishedRef.current) return;
+    finishedRef.current = true;
+    setDone(true);
+    window.setTimeout(onFinish, 500);
+  }, [onFinish]);
 
   // --- Matrix Rain (Reactified) ---
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      onFinish();
+      return;
+    }
+
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
@@ -75,7 +88,7 @@ export default function Loader({ onFinish }: { onFinish: () => void }) {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("resize", setSize);
     };
-  }, []);
+  }, [onFinish]);
 
   // --- Percentage & fade out ---
   useEffect(() => {
@@ -84,14 +97,10 @@ export default function Loader({ onFinish }: { onFinish: () => void }) {
       return () => clearTimeout(timer);
     } else {
       // fade out, then let parent render main page
-      const t1 = setTimeout(() => setDone(true), 500);
-      const t2 = setTimeout(onFinish, 1200);
-      return () => {
-        clearTimeout(t1);
-        clearTimeout(t2);
-      };
+      const timer = setTimeout(finish, 500);
+      return () => clearTimeout(timer);
     }
-  }, [percent, onFinish]);
+  }, [finish, percent]);
 
   return (
     <div
@@ -121,6 +130,15 @@ export default function Loader({ onFinish }: { onFinish: () => void }) {
           />
         </div>
       </div>
+
+      <button
+        type="button"
+        onClick={finish}
+        className="absolute right-5 top-5 z-20 rounded-full border border-white/20 bg-black/40 px-4 py-2 text-sm font-medium text-white/80 backdrop-blur-sm transition hover:border-cyan-300/60 hover:bg-cyan-400/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:right-8 sm:top-8"
+        aria-label="Skip intro and view portfolio"
+      >
+        Skip intro <span aria-hidden="true">→</span>
+      </button>
     </div>
   );
 }

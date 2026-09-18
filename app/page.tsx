@@ -14,30 +14,32 @@ import Contact from "./components/Contact";
 export default function Home() {
   const [loading, setLoading] = useState(true);
 
-  if (loading) return <Loader onFinish={() => setLoading(false)} />;
-
   return (
-    <main className="relative min-h-screen fade-in">
-      <Background />
-      <Navbar />
-      <Hero />
+    <>
+      {loading && <Loader onFinish={() => setLoading(false)} />}
 
-      {/* About Section */}
-      <About />
+      <main className="relative min-h-screen">
+        <Background />
+        <Navbar />
+        <Hero />
 
-      {/* Get to Know Me — bento grid */}
-      <GetToKnowMe />
+        {/* About Section */}
+        <About />
 
-      {/* Skills / Experience Section */}
-      <Skills_Page />  {/* ✅ your new section */}
+        {/* Get to Know Me — bento grid */}
+        <GetToKnowMe />
 
-      {/* Projects Section */}
-      <Section id="projects" title="Projects">
-        <ProjectsGrid />
-      </Section>
+        {/* Skills / Experience Section */}
+        <Skills_Page />
 
-      {/* Contact Section */}
-      <Contact />
-    </main>
+        {/* Projects Section */}
+        <Section id="projects" title="Projects">
+          <ProjectsGrid />
+        </Section>
+
+        {/* Contact Section */}
+        <Contact />
+      </main>
+    </>
   );
 }
