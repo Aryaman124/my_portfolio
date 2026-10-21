@@ -20,30 +20,30 @@ export default function About() {
         </h2>
 
         <p className="text-gray-300 leading-relaxed mb-4">
-          Hi, I’m <span className="text-cyan-400 font-medium">Aryaman Sarcar</span>, 
-          majoring in Computer Engineering and Computer Science at 
-          <span className="text-cyan-400 font-medium"> Northeastern University</span>.
-          I’m deeply passionate about <span className="text-cyan-400">machine learning</span>,
-          <span className="text-cyan-400"> data analytics</span>, and 
-          <span className="text-cyan-400"> modeling.</span>  I love using technology 
-          to tackle real-world challenges through research, analytics, 
-          and software development.
+          Hi, I’m <span className="text-cyan-400 font-medium">Aryaman Sarcar</span>,
+          a Computer Science student at{" "}
+          <span className="text-cyan-400 font-medium">Northeastern University</span>{" "}
+          concentrating in artificial intelligence with a minor in mathematics.
+          I’m interested in how <span className="text-cyan-400">machine learning</span>,{" "}
+          <span className="text-cyan-400">quantitative systems</span>, and{" "}
+          <span className="text-cyan-400">software engineering</span> can help us
+          understand complex problems and build useful solutions.
         </p>
 
         <p className="text-gray-300 leading-relaxed mb-4">
-          I’ve worked on projects involving machine learning models, 
-          full-stack development, and data visualization. 
-          Each project has helped me grow as an engineer and 
-          strengthened my interest in creating tools that 
-          make information accessible and impactful.
+          My projects span machine learning, full-stack development, and data
+          visualization. I enjoy working through the whole process: exploring
+          data, testing ideas, and turning what I learn into reliable software.
+          I’m especially drawn to work that combines analytical thinking with
+          tools people can use in their everyday lives.
         </p>
 
         <p className="text-gray-300 leading-relaxed">
-          Outside of academics, I love <span className="text-cyan-400">lifting</span>, 
-          playing <span className="text-cyan-400">soccer</span>, and training in 
-          <span className="text-cyan-400"> Brazilian Jiu-Jitsu</span>. 
-          I believe balance between discipline, learning, and creativity 
-          keeps me focused and motivated.
+          Outside of coding, I enjoy <span className="text-cyan-400">tennis</span>,{" "}
+          <span className="text-cyan-400">football</span>, and{" "}
+          <span className="text-cyan-400">rugby</span>. I also like following
+          markets and exploring research that gives me a new way to think about
+          the world.
         </p>
       </motion.div>
 
