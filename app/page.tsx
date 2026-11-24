@@ -7,7 +7,6 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import GetToKnowMe from "./components/GetToKnowMe";
 import Skills_Page from "./components/Skills_Page";
-import Section from "./components/Section";
 import ProjectsGrid from "./components/ProjectsGrid";
 import Contact from "./components/Contact";
 
@@ -33,9 +32,7 @@ export default function Home() {
         <Skills_Page />
 
         {/* Projects Section */}
-        <Section id="projects" title="Projects">
-          <ProjectsGrid />
-        </Section>
+        <ProjectsGrid />
 
         {/* Contact Section */}
         <Contact />

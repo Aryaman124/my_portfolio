@@ -8,7 +8,8 @@ const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono"
 
 export const metadata: Metadata = {
   title: "Aryaman Sarcar — Portfolio",
-  description: "Personal portfolio of Aryaman Sarcar",
+  description:
+    "Aryaman Sarcar’s engineering portfolio: AI workflows, portfolio optimization, market simulation, and backend systems. Computer Science at Northeastern University.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
